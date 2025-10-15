@@ -1,0 +1,230 @@
+ <!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sun Rose — www.sunrose.bg</title>
+<meta name="description" content="Sun Rose — уеб дизайн и портфолио" />
+<style>
+  :root{
+    --royal-blue: #274690;
+    --gold: #F5C542;
+    --light-green: #B7E4C7;
+    --bg: #f8fbfa;
+    --text: #1b2330;
+    --muted: #5e6b73;
+    --card-shadow: 0 6px 18px rgba(39,70,144,0.08);
+  }
+  *{box-sizing:border-box}
+  body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:var(--text); line-height:1.45}
+  header{background:linear-gradient(90deg,var(--royal-blue), #2e5bb0); color:white; padding:36px 20px}
+  .container{max-width:1100px;margin:0 auto;padding:20px}
+  .brand{display:flex;gap:18px;align-items:center}
+  .logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--light-green));display:flex;align-items:center;justify-content:center;color:var(--royal-blue);font-weight:800;font-size:22px;box-shadow:var(--card-shadow)}
+  h1{margin:0;font-size:28px}
+  p.lead{margin:6px 0 0;color:#f0f6ff}
+  nav.actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{background:var(--gold);color:var(--royal-blue);border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;display:inline-flex;gap:8px;align-items:center;text-decoration:none;transition:0.2s}
+  .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,0.18)}
+  .btn:hover{opacity:0.85; transform:translateY(-2px);}
+  main{margin-top:26px}
+  .grid{display:grid;grid-template-columns:1fr 380px;gap:24px}
+  .card{background:white;border-radius:14px;padding:18px;box-shadow:var(--card-shadow)}
+  h2{margin:0 0 12px}
+  .uploader{border:2px dashed #d9e6f7;border-radius:12px;padding:18px;text-align:center;background:linear-gradient(180deg,rgba(183,228,199,0.18),transparent)}
+  .thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .thumb-wrapper{position:relative; display:inline-block}
+  .thumb{width:110px;height:80px;object-fit:cover;border-radius:8px;box-shadow:0 6px 14px rgba(0,0,0,0.06)}
+  .delete-thumb{position:absolute;top:-8px;right:-8px;background:var(--gold);border:none;color:var(--royal-blue);border-radius:50%;width:22px;height:22px;font-weight:bold;cursor:pointer}
+  input[type=file]{display:none}
+  .stars{font-size:28px;cursor:pointer;user-select:none}
+  .rating-stats{margin-top:10px;color:var(--muted)}
+  .contact-list{display:flex;flex-direction:column;gap:8px}
+  .contact-item{display:flex;align-items:center;gap:10px}
+  a.contact-link{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--royal-blue);background:linear-gradient(90deg,rgba(245,197,66,0.12),transparent)}
+  footer{margin-top:30px;padding:18px;text-align:center;color:var(--muted)}
+  input, button[type=submit]{font-family:inherit}
+  @media(max-width:900px){.grid{grid-template-columns:1fr} .logo{width:56px;height:56px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">SR</div>
+      <div>
+        <h1>Sun Rose</h1>
+        <p class="lead">живее на светлина — оцелява и в тъмнина</p>
+        <nav class="actions">
+          <a class="btn" href="tel:0897214022">📞 Обадете се</a>
+          <a class="btn" href="mailto:raikaparvanova@gmail.com">✉️ Пишете имейл</a>
+          <a class="btn secondary" href="#gallery">🖼️ Галерия / Портфолио</a>
+          <a class="btn secondary" href="#rating">⭐ Оценка от клиенти</a>
+          <a class="btn secondary" href="#projectsGallery">🌐 Нашите проекти</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="grid">
+    <section>
+      <div class="card" id="about">
+        <h2>За Sun Rose</h2>
+        <p>Sun Rose — портфолио и уеб дизайн студио. Телефон: <strong>089 721 4022</strong> · Имейл: <strong>raikaparvanova@gmail.com</strong></p>
+      </div>
+
+      <!-- Галерия -->
+      <div class="card" id="gallery" style="margin-top:18px">
+        <h2>Галерия / Портфолио</h2>
+
+        <!-- Админ бутон за качване на снимки -->
+        <button id="uploadBtn" class="btn" style="margin-bottom:12px; display:none;">Качи снимки</button>
+        <input id="fileInput" type="file" accept="image/*" multiple>
+
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <!-- Рейтинг -->
+      <div class="card" id="rating" style="margin-top:18px">
+        <h2>Оценка от клиенти</h2>
+        <div id="starWrap" class="stars" aria-label="Оцени" role="img">☆ ☆ ☆ ☆ ☆</div>
+        <div class="rating-stats" id="ratingStats">Все още няма оценки.</div>
+      </div>
+
+      <!-- Проекти / Сайтове -->
+      <div class="card" id="projectsGallery" style="margin-top:18px">
+        <h2>Проекти / Сайтове</h2>
+
+        <!-- Админ бутон за добавяне на сайт -->
+        <button id="adminAddBtn" class="btn" style="margin-bottom:12px; display:none;">Добави нов сайт</button>
+
+        <div id="projectsListReadOnly"></div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <h2>Контакти</h2>
+        <div class="contact-list">
+          <div class="contact-item"><a class="contact-link" href="tel:0897214022">📞 089 721 4022</a></div>
+          <div class="contact-item"><a class="contact-link" href="mailto:raikaparvanova@gmail.com">✉️ raikaparvanova@gmail.com</a></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    © Sun Rose — Телефон: 0897214022 · Имейл: raikaparvanova@gmail.com
+  </footer>
+</main>
+
+<script>
+  const isAdmin = true; // смени на false за клиентска версия
+
+  // --- Галерия ---
+  const fileInput = document.getElementById('fileInput');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const thumbs = document.getElementById('thumbs');
+
+  function loadImageDataUrls(){ 
+    try{ return JSON.parse(localStorage.getItem('sunrose_images')||'[]'); }
+    catch(e){ return []; }
+  }
+
+  function saveImageDataUrls(list){ localStorage.setItem('sunrose_images', JSON.stringify(list)); }
+
+  function renderThumbs(){
+    thumbs.innerHTML='';
+    const arr = loadImageDataUrls();
+    arr.forEach((src,i)=>{
+      const wrap = document.createElement('div'); wrap.className='thumb-wrapper';
+      const img = document.createElement('img'); img.src=src; img.className='thumb'; img.alt='portfolio-'+i;
+      wrap.appendChild(img);
+      thumbs.appendChild(wrap);
+    });
+  }
+  renderThumbs();
+
+  if(isAdmin){
+    uploadBtn.style.display = 'inline-flex';
+    uploadBtn.addEventListener('click', ()=>fileInput.click());
+    fileInput.addEventListener('change', async e=>{
+      const files = Array.from(e.target.files);
+      const prev = loadImageDataUrls();
+      for(const f of files){
+        if(!f.type.startsWith('image/')) continue;
+        const reader = new FileReader();
+        reader.onload = ()=>{ prev.unshift(reader.result); saveImageDataUrls(prev.slice(0,60)); renderThumbs(); };
+        reader.readAsDataURL(f);
+      }
+      fileInput.value='';
+    });
+  }
+
+  // --- Рейтинг ---
+  const starWrap = document.getElementById('starWrap');
+  const ratingStats = document.getElementById('ratingStats');
+
+  function loadRatings(){ try{return JSON.parse(localStorage.getItem('sunrose_ratings')||'[]'); }catch(e){return [];} }
+  function saveRatings(list){ localStorage.setItem('sunrose_ratings', JSON.stringify(list)); }
+  function renderStars(){ 
+    const list = loadRatings();
+    const avg = list.length ? (list.reduce((a,b)=>a+b,0)/list.length) : 0;
+    const full = Math.round(avg);
+    const stars = Array.from({length:5}, (_,i)=> i<full ? '★':'☆').join(' ');
+    starWrap.textContent = stars;
+    ratingStats.textContent = list.length ? `Средна оценка: ${avg.toFixed(2)} · ${list.length} оцен(ки)` : 'Все още няма оценки.';
+  }
+
+  starWrap.addEventListener('click', e=>{
+    const rect=starWrap.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const total=rect.width;
+    const pos=Math.ceil((x/total)*5);
+    const rating=Math.min(Math.max(pos,1),5);
+    const list=loadRatings();
+    list.push(rating);
+    saveRatings(list);
+    renderStars();
+  });
+  renderStars();
+
+  // --- Проекти ---
+  const adminAddBtn = document.getElementById('adminAddBtn');
+
+  function loadProjects(){ try{return JSON.parse(localStorage.getItem('sunrose_projects')||'[]'); }catch(e){return[];} }
+  function renderProjectsReadOnly(){
+    const container = document.getElementById('projectsListReadOnly');
+    container.innerHTML='';
+    const projects = loadProjects();
+    if(projects.length===0){ container.innerHTML='<p style="color:var(--muted)">Все още няма добавени проекти.</p>'; return; }
+    projects.forEach(p=>{
+      const wrap = document.createElement('div');
+      wrap.style.display='flex';
+      wrap.style.flexDirection='column';
+      wrap.style.marginBottom='12px';
+      wrap.innerHTML = `<strong>${p.title}</strong>
+                        <a href="${p.url}" target="_blank" class="btn secondary" style="width:fit-content;margin-top:4px">Разгледай</a>`;
+      container.appendChild(wrap);
+    });
+  }
+  renderProjectsReadOnly();
+
+  if(isAdmin){
+    adminAddBtn.style.display = 'inline-flex';
+    adminAddBtn.onclick = ()=>{
+      const title = prompt("Въведи заглавие на сайта:");
+      const url = prompt("Въведи URL на сайта:");
+      if(title && url){
+        const list = loadProjects();
+        list.unshift({title:title,url:url});
+        localStorage.setItem('sunrose_projects', JSON.stringify(list));
+        renderProjectsReadOnly();
+      }
+    };
+  }
+</script>
+</body>
+</html>
